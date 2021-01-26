@@ -11,8 +11,7 @@ function BinaryTree() {
 }
 
 BinaryTree.prototype = {
-  insertNode: function (node, value) {
-
+  insertNode: function (value) {
     function insert(node, value) {
       let nd = new Node(value)
       if (!node) {
