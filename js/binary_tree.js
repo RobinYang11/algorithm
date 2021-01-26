@@ -11,10 +11,12 @@ function BinaryTree() {
 }
 
 BinaryTree.prototype = {
+
   insertNode: function (value) {
+
     function insert(node, value) {
       let nd = new Node(value)
-      if (node.value < value) {
+      if (node.value > value) {
         if (node.leftNode == null) {
           node.leftNode = nd;
         } else {
@@ -36,6 +38,29 @@ BinaryTree.prototype = {
     } else {
       insert(this.root, value)
     }
+  },
+
+  preOrder: function () {
+    function pre(node) {
+      if (node.leftNode) {
+        pre(node.leftNode)
+      }
+      console.log(node.value)
+      if (node.rightNode) {
+        pre(node.rightNode);
+      }
+    }
+    pre(this.root);
+  },
+  midOrder: function () {
+    function mid(node) {
+      if (node !== null) {
+        console.log(node.value)
+        mid(node.leftNode)
+        mid(node.rightNode)
+      }
+    }
+    mid(this.root)
   }
 }
 
@@ -47,8 +72,10 @@ tree.insertNode(10);
 tree.insertNode(11);
 tree.insertNode(9);
 tree.insertNode(6);
-console.dir(tree)
 
+
+tree.preOrder();
+tree.midOrder();
 
 
 
