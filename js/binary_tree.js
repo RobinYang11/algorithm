@@ -14,20 +14,24 @@ BinaryTree.prototype = {
   insertNode: function (value) {
     function insert(node, value) {
       let nd = new Node(value)
-      if (!node) {
-        node = nd;
-      } else {
-
-        if (node.value < value) {
-          insert(node.right, value);
+      if (node.value < value) {
+        if (node.leftNode == null) {
+          node.leftNode = nd;
         } else {
-          insert(node.left, value)
+          insert(node.leftNode, value);
+        }
+      } else {
+        if (node.rightNode == null) {
+          node.rightNode = nd;
+        } else {
+          insert(node.rightNode, value)
         }
       }
     }
 
     if (!this.root) {
       this.root = new Node(value);
+      this.nodeNum++;
       return;
     } else {
       insert(this.root, value)
@@ -37,10 +41,14 @@ BinaryTree.prototype = {
 
 let tree = new BinaryTree();
 
-let node = tree.insertNode(tree.root, 1);
-node = tree.insertNode(node, 2);
-node = tree.insertNode(node, 3);
-console.log(node)
+tree.insertNode(8);
+tree.insertNode(7);
+tree.insertNode(10);
+tree.insertNode(11);
+tree.insertNode(9);
+tree.insertNode(6);
+console.dir(tree)
+
 
 
 
