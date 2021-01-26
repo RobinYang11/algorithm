@@ -12,26 +12,35 @@ function BinaryTree() {
 
 BinaryTree.prototype = {
   insertNode: function (node, value) {
-    if (!node) {
+
+    function insert(node, value) {
       let nd = new Node(value)
-      node = nd;
-      return nd;
-    }
-    if (node) {
-      if (value < node.value) {
-        this.insertNode(node.left, value)
+      if (!node) {
+        node = nd;
       } else {
-        this.insertNode(node.right, value)
+
+        if (node.value < value) {
+          insert(node.right, value);
+        } else {
+          insert(node.left, value)
+        }
       }
+    }
+
+    if (!this.root) {
+      this.root = new Node(value);
+      return;
+    } else {
+      insert(this.root, value)
     }
   }
 }
 
 let tree = new BinaryTree();
 
-let node =tree.insertNode(tree.root,1);
-node =tree.insertNode(node,2);
-node =tree.insertNode(node,3);
+let node = tree.insertNode(tree.root, 1);
+node = tree.insertNode(node, 2);
+node = tree.insertNode(node, 3);
 console.log(node)
 
 
